@@ -8,9 +8,11 @@ class Cell
     @rendered = "."
     @fired_upon = false 
   end
+  
   def empty?
     @empty
   end
+
   def place_ship(ship)
     if empty? == true
       @ship = ship
@@ -18,8 +20,15 @@ class Cell
     end
   end
   
+  def fired_upon?
+    @fired_upon
+  end
+
   def fire_upon 
-    @fired_upon = true 
+     if empty == false 
+      ship.hit 
+      @fired_upon = true 
+     end
   end 
   
   def render

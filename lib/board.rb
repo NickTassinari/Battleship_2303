@@ -25,7 +25,6 @@ class Board
 
   end
 
-
   def valid_coordinate?(coordinate)
     if cells.include?(coordinate) == true 
       true 
@@ -92,4 +91,3 @@ class Board
         false
     end 
   end
- 

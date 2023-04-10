@@ -39,6 +39,7 @@ class Board
     else false 
     end
   end
+  
   def place(ship, ship_coordinates)
     if valid_placement?(ship, ship_coordinates) && validate_cell(ship_coordinates)
       ship_coordinates.each do |cell|
@@ -76,8 +77,8 @@ class Board
       else  
         false
       end 
-    end 
-  end 
+    end
+  end
   #helper method for consecutive vertical cells
   def coordinates_consecutive_vertical?(coordinates)
     if @vertical_cells[0].each_cons(coordinates.length).any? do |cells|
@@ -100,3 +101,33 @@ class Board
         false
     end 
   end
+
+  def render(show_board = false)
+    if show_board == true 
+      true_board
+    else
+      rendered_board
+    end
+  end
+
+
+
+
+
+  def true_board
+
+    "  1 2 3 4 \n" +
+    "A #{cell["A1"].render(true)} #{cell["A2"].render(true)} #{cell["A3"].render(true)} #{cell["A4"].render(true)} \n" +
+    "B #{cell["B1"].render(true)} #{cell["B2"].render(true)} #{cell["B3"].render(true)} #{cell["B4"].render(true)} \n" +
+    "C #{cell["C1"].render(true)} #{cell["C2"].render(true)} #{cell["C3"].render(true)} #{cell["C4"].render(true)} \n" +
+    "D #{cell["D1"].render(true)} #{cell["D2"].render(true)} #{cell["D3"].render(true)} #{cell["D4"].render(true)} \n" +
+  end
+
+  def rendered_board
+    "  1 2 3 4 \n" +
+    "A #{cell["A1"].render} #{cell["A2"].render} #{cell["A3"].render} #{cell["A4"].render} \n" +
+    "B #{cell["B1"].render} #{cell["B2"].render} #{cell["B3"].render} #{cell["B4"].render} \n" +
+    "C #{cell["C1"].render} #{cell["C2"].render} #{cell["C3"].render} #{cell["C4"].render} \n" +
+    "D #{cell["D1"].render} #{cell["D2"].render} #{cell["D3"].render} #{cell["D4"].render} \n" +
+  end
+end

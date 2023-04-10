@@ -33,7 +33,6 @@ RSpec.describe Board do
       expect(board.valid_placement?(cruiser, ['A1', 'A2'])).to eq(false)
       expect(board.valid_placement?(submarine, ['A2', 'A3', 'A4'])).to eq(false)
     end
-  end
 
     it 'can tell if coordinates are consecutive' do 
       board = Board.new 
@@ -86,3 +85,13 @@ RSpec.describe Board do
       expect(board.valid_placement?(submarine, ['A1', 'B1'])).to eq(false)
     end
   end
+  describe 'render' do
+    it 'can render the board' do
+      board = Board.new 
+      cruiser = Ship.new('Cruiser', 3)
+      board.place(cruiser,['A1','A2','A3'])
+      expect(board.render).to be_a(String)
+      expect(board.render(true)).to be_a(String)
+    end
+  end
+end

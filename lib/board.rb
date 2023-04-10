@@ -39,6 +39,15 @@ class Board
     else false 
     end
   end
+  def place(ship, ship_coordinates)
+    if valid_placement?(ship, ship_coordinates) && validate_cell(ship_coordinates)
+      ship_coordinates.each do |cell|
+        cells[cell].place_ship(ship)
+      end
+    else false
+    end
+  end
+
   #helper method for valid cells
   def validate_cell(ship_coordinates)
     ship_coordinates.each.all? do |cell|

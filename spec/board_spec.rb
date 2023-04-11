@@ -63,6 +63,7 @@ RSpec.describe Board do
       expect(board.valid_placement?(cruiser, ['B1', 'C1', 'D1'])).to eq(true)
     end
   end 
+
   describe '#place ships' do
     it 'can contain single ship in multiple cells' do
       board = Board.new

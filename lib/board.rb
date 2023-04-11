@@ -1,5 +1,5 @@
 class Board 
-  attr_reader :cells 
+  attr_reader :cells, :horizontal_cells, :vertical_cells 
 
   def initialize 
     @cells = {
@@ -18,11 +18,10 @@ class Board
       "D1" =>Cell.new("D1"),
       "D2" =>Cell.new("D2"),
       "D3" =>Cell.new("D3"),
-      "D4" =>Cell.new("D4")
+      "D4" =>Cell.new("D4"),
     }
     @horizontal_cells = [['A1', 'A2', 'A3', 'A4'],['B1','B2','B3','B4'],['C1','C2','C3','C4'],['D1','D2','D3','D4']]
     @vertical_cells = [['A1','B1','C1','D1'],['A2','B2','C2','D2'],['A3','B3','C3','D3'],['A4','B4','C4','D4']]
-
   end
 
   def valid_coordinate?(coordinate)
@@ -46,6 +45,14 @@ class Board
         cells[cell].place_ship(ship)
       end
     else false
+    end
+  end
+
+  def render(show_board = false)
+    if show_board == true 
+      true_board
+    else
+      rendered_board
     end
   end
 
@@ -78,7 +85,7 @@ class Board
         false
       end 
     end
-  end
+  
   #helper method for consecutive vertical cells
   def coordinates_consecutive_vertical?(coordinates)
     if @vertical_cells[0].each_cons(coordinates.length).any? do |cells|
@@ -102,32 +109,19 @@ class Board
     end 
   end
 
-  def render(show_board = false)
-    if show_board == true 
-      true_board
-    else
-      rendered_board
-    end
-  end
-
-
-
-
-
   def true_board
-
     "  1 2 3 4 \n" +
-    "A #{cell["A1"].render(true)} #{cell["A2"].render(true)} #{cell["A3"].render(true)} #{cell["A4"].render(true)} \n" +
-    "B #{cell["B1"].render(true)} #{cell["B2"].render(true)} #{cell["B3"].render(true)} #{cell["B4"].render(true)} \n" +
-    "C #{cell["C1"].render(true)} #{cell["C2"].render(true)} #{cell["C3"].render(true)} #{cell["C4"].render(true)} \n" +
-    "D #{cell["D1"].render(true)} #{cell["D2"].render(true)} #{cell["D3"].render(true)} #{cell["D4"].render(true)} \n" +
+    "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)}\n" +
+    "B #{@cells["B1"].render(true)} #{@cells["B2"].render(true)} #{@cells["B3"].render(true)} #{@cells["B4"].render(true)}\n" +
+    "C #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)}\n" +
+    "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)}"
   end
-
+  
   def rendered_board
     "  1 2 3 4 \n" +
-    "A #{cell["A1"].render} #{cell["A2"].render} #{cell["A3"].render} #{cell["A4"].render} \n" +
-    "B #{cell["B1"].render} #{cell["B2"].render} #{cell["B3"].render} #{cell["B4"].render} \n" +
-    "C #{cell["C1"].render} #{cell["C2"].render} #{cell["C3"].render} #{cell["C4"].render} \n" +
-    "D #{cell["D1"].render} #{cell["D2"].render} #{cell["D3"].render} #{cell["D4"].render} \n" +
+    "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render}\n" +
+    "B #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render}\n" +
+    "C #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render}\n" +
+    "D #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render}" 
   end
-end
+end 

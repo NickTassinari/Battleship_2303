@@ -36,4 +36,13 @@ class Game
     cpu_submarine_placer = @cpu_board.valid_sub_placements.sample 
     @cpu_board.place(@cpu_submarine, cpu_submarine_placer)
   end
+
+  def introduction
+    puts "I have laid out my ships on the grid."
+    puts "You now need to lay out your two ships."
+    puts "The Cruiser is three units long and the Submarine is two units long."
+    puts @player_board.render(true)
+    puts "\nEnter the squares for the Cruiser (3 spaces):"
+    
+  end
 end

@@ -30,7 +30,7 @@ class Cell
   end 
   
   def render(show_ship = false)
-    if show_ship 
+    if show_ship && !@ship.nil? && fired_upon? == false 
       "S"
     elsif fired_upon? == false 
       "."

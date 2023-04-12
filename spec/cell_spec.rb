@@ -1,6 +1,5 @@
-require './lib/ship'
-require './lib/cell'
-require 'pry'
+require 'spec_helper'
+
 RSpec.describe Cell do 
   describe '#initialize' do 
     it 'exists' do 

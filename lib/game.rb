@@ -23,4 +23,17 @@ class Game
     @player_submarine = Ship.new('Submarine', 2)
     @player_cruiser = Ship.new('Cruiser', 3)
   end
+
+  def welcome 
+    welcome = "Welcome to BATTLESHIP\nEnter p to play. Enter q to quit.\n"
+    puts welcome 
+  end
+
+  def cpu_setup
+    cpu_cruiser_placer = @cpu_board.valid_cruiser_placements.sample 
+    @cpu_board.place(@cpu_cruiser, cpu_cruiser_placer)
+
+    cpu_submarine_placer = @cpu_board.valid_sub_placements.sample 
+    @cpu_board.place(@cpu_submarine, cpu_submarine_placer)
+  end
 end

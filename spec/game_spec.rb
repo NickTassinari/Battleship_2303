@@ -28,4 +28,20 @@ RSpec.describe Game do
       expect(game.player_cruiser).to be_a(Ship)
     end
   end
+
+  describe '#start_game' do 
+    it 'displays welcome message to user' do 
+      game = Game.new 
+
+      expect{ game.welcome }.to output("Welcome to BATTLESHIP\nEnter p to play. Enter q to quit.\n").to_stdout
+    end
+
+    it 'places CPU ships automatically' do 
+      game = Game.new 
+      game.set_up_game
+      game.cpu_setup 
+
+      expect(game.cpu_board.render == game.cpu_board.render(true)).to eq(false)
+    end
+  end
 end
